@@ -2,7 +2,8 @@
 body {
     background-color: rgb(200,200,200);
     color: rgb(0,0,0);
-    font-family: "Open Sans", sans-serif;
+    font-family: 'Faster One', cursive;
+    font-size: 112px;
     text-align: center;
 }
 
@@ -17,7 +18,8 @@ header {
 }
 
 footer {
-	font-style: italic;
+	font-style: bold;
+    font-family: 'Exo 2', sans-serif;
 	font-size: 90%;
 }
 
