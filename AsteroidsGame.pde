@@ -44,9 +44,10 @@ public void keyPressed()
     if (key == 's') 
       astroBoy.rotate(10);
 
-    if(key == 'h')
+    if(key == 'd')
     {
        astroBoy.setDirectionX(0);
+       astroBoy.setDirectionY(0);
        astroBoy.setX((int)(Math.random()*600));
        astroBoy.setY((int)(Math.random()*600));
     }
