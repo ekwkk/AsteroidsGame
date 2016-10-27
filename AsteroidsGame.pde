@@ -50,6 +50,7 @@ public void keyPressed()
        astroBoy.setDirectionY(0);
        astroBoy.setX((int)(Math.random()*600));
        astroBoy.setY((int)(Math.random()*600));
+       astroBoy.setPointDirection((int)(Math.random()*360));
     }
 
 
