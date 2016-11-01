@@ -1,4 +1,5 @@
 SpaceShip astroBoy = new SpaceShip();
+Asteroid[] aster = new Asteroid[10];
 Star[] twinkle = new Star[200];
 
 public void setup() 
@@ -7,6 +8,11 @@ public void setup()
   for (int i = 0; i < twinkle.length; i++)
   {
     twinkle[i] = new Star();
+  }
+
+  for (int i = 0; i < aster.length; i++)
+  {
+    aster[i] = new Asteroid();
   }
 }
 
@@ -21,44 +27,115 @@ public void draw()
   {
     twinkle[i].show();
   }
+
+  for (int i = 0; i < aster.length; i++)
+  {
+    aster[i].show();
+    aster[i].move();
+  }
+
+
   astroBoy.show();
   astroBoy.move();
-  
   
 }
 
 
 public void keyPressed() 
 {
-    // if (key == CODED) 
-    // {
-    //     if (keyCode == LEFT)
-    //       astroBoy.rotate(-10);
-    //     if (keyCode == RIGHT)
-    //       astroBoy.rotate(10);
-    // }
-
-    if (key == 'w') 
-      astroBoy.rotate(-10);
-
-    if (key == 's') 
-      astroBoy.rotate(10);
-
-    if(key == 'd')
+    if (key == CODED) 
     {
-       astroBoy.setDirectionX(0);
-       astroBoy.setDirectionY(0);
-       astroBoy.setX((int)(Math.random()*600));
-       astroBoy.setY((int)(Math.random()*600));
-       astroBoy.setPointDirection((int)(Math.random()*360));
+        if (keyCode == LEFT)
+          astroBoy.rotate(-10);
+        if (keyCode == RIGHT)
+          astroBoy.rotate(10);
+        if (keyCode == UP)
+        {
+         astroBoy.setDirectionX(0);
+         astroBoy.setDirectionY(0);
+         astroBoy.setX((int)(Math.random()*600));
+         astroBoy.setY((int)(Math.random()*600));
+         astroBoy.setPointDirection((int)(Math.random()*360));
+        }
     }
 
-
-    if(key == 'a')
+    if(key == ' ')
     {
       astroBoy.accelerate(0.4);
     }
 }
+
+
+
+
+
+
+class Asteroid extends Floater
+{
+  private int rotSpeed;
+
+  public void setX(int x) {myCenterX = x;}
+  public int getX() {return (int)myCenterX;}
+  public void setY(int y) {myCenterY = y;}
+  public int getY() { return (int)myCenterY;}
+  public void setDirectionX(double x) {myDirectionX = x;}
+  public double getDirectionX() {return myDirectionX;}
+  public void setDirectionY(double y) {myDirectionY = y;}
+  public double getDirectionY() {return myDirectionY;}
+  public void setPointDirection(int degrees) {myPointDirection = degrees;}
+  public double getPointDirection() { return myPointDirection;}
+
+
+
+
+
+  public Asteroid()
+  {
+    rotSpeed = (int)(Math.random()*8-4);
+
+    corners = 6;
+    xCorners = new int[corners];
+    yCorners = new int[corners];
+    xCorners[0] = -20;
+    yCorners[0] = -15;
+    xCorners[1] = 7;
+    yCorners[1] = -15;
+    xCorners[2] = 13;
+    yCorners[2] = 0;
+    xCorners[3] = 6;
+    yCorners[3] = 10;
+    xCorners[4] = -20;
+    yCorners[4] = 15;
+    xCorners[5] = -5;
+    yCorners[5] = 0;
+
+
+
+      myColor = color(128,128,128);
+      setX((int)(Math.random()*600));
+      setY((int)(Math.random()*600));
+      setDirectionX(0);
+      setDirectionY(0);
+      setPointDirection((int)(Math.random()*360));
+  }
+
+
+
+
+  public void move()
+  {
+    rotate(rotSpeed);       
+    super.move();
+  }
+
+}
+
+
+
+
+
+
+
 
 
 class SpaceShip extends Floater 
@@ -89,7 +166,7 @@ class SpaceShip extends Floater
       xCorners[3] = -4;
       yCorners[3] = 0;
 
-      myColor = color(174,198,207);
+      myColor = color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255));
       setX(300);
       setY(300);
       setDirectionX(0);
@@ -112,7 +189,7 @@ class Star
     myY = (int)(Math.random()*600);
   }
 
-  private int myColor = color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255));
+  private int myColor = color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255), 120);
 
   public void show()
   {
@@ -121,9 +198,6 @@ class Star
     ellipse(myX, myY, 5, 5);
   }
 }
-
-
-
 
 
 
