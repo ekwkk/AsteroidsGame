@@ -46,10 +46,14 @@ public void keyPressed()
     if (key == CODED) 
     {
         if (keyCode == LEFT)
-          astroBoy.rotate(-10);
+          astroBoy.rotate(-20);
         if (keyCode == RIGHT)
-          astroBoy.rotate(10);
+          astroBoy.rotate(20);
         if (keyCode == UP)
+        {
+          astroBoy.accelerate(0.2);
+        }
+        if (keyCode == DOWN)
         {
          astroBoy.setDirectionX(0);
          astroBoy.setDirectionY(0);
@@ -59,9 +63,10 @@ public void keyPressed()
         }
     }
 
-    if(key == ' ')
+    if (key == ' ')
     {
-      astroBoy.accelerate(0.4);
+      // dot.draw();
+      // dot.show();
     }
 }
 
@@ -114,8 +119,8 @@ class Asteroid extends Floater
       myColor = color(128,128,128);
       setX((int)(Math.random()*600));
       setY((int)(Math.random()*600));
-      setDirectionX(0);
-      setDirectionY(0);
+      setDirectionX((int)(Math.random()*8-4));
+      setDirectionY((int)(Math.random()*8-4));
       setPointDirection((int)(Math.random()*360));
   }
 
