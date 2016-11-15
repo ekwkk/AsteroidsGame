@@ -1,6 +1,7 @@
 SpaceShip astroBoy = new SpaceShip();
-Asteroid[] aster = new Asteroid[10];
+ArrayList <Asteroid> aster = new ArrayList <Asteroid>();
 Star[] twinkle = new Star[200];
+// Bullets dot = new Bullets(astroBoy);
 
 public void setup() 
 {
@@ -10,9 +11,9 @@ public void setup()
     twinkle[i] = new Star();
   }
 
-  for (int i = 0; i < aster.length; i++)
+  for (int i = 0; i < 10; i++)
   {
-    aster[i] = new Asteroid();
+    aster.add(new Asteroid());
   }
 }
 
@@ -28,16 +29,21 @@ public void draw()
     twinkle[i].show();
   }
 
-  for (int i = 0; i < aster.length; i++)
+
+  for (int i = 0; i < aster.size(); i++)
   {
-    aster[i].show();
-    aster[i].move();
+    aster.get(i).show();
+    aster.get(i).move();
+
+    if (dist(astroBoy.getX(),astroBoy.getY(),aster.get(i).getX(),aster.get(i).getY()) < 20)
+      aster.remove(i);
   }
-
-
-  astroBoy.show();
-  astroBoy.move();
   
+
+
+   // dot.show();
+    astroBoy.show();
+    astroBoy.move();
 }
 
 
@@ -63,12 +69,51 @@ public void keyPressed()
         }
     }
 
-    if (key == ' ')
-    {
-      // dot.draw();
-      // dot.show();
-    }
+    // if (key == ' ')
+    // {
+    //   dot.move();
+    // }
+
 }
+
+
+
+
+
+
+// class Bullets extends Floater
+// {
+//   public void setX(int x) {myCenterX = x;}
+//   public int getX() {return (int)myCenterX;}
+//   public void setY(int y) {myCenterY = y;}
+//   public int getY() { return (int)myCenterY;}
+//   public void setDirectionX(double x) {myDirectionX = x;}
+//   public double getDirectionX() {return myDirectionX;}
+//   public void setDirectionY(double y) {myDirectionY = y;}
+//   public double getDirectionY() {return myDirectionY;}
+//   public void setPointDirection(int degrees) {myPointDirection = degrees;}
+//   public double getPointDirection() { return myPointDirection;}
+
+
+
+
+//   public Bullets(SpaceShip theShip)
+//   {
+//     setX(theShip.getX());
+//     setY(theShip.getY());
+//     setPointDirection((int)(theShip.getPointDirection()));
+//     double dRadians = getPointDirection()*(Math.PI/180);
+//     setDirectionX(5*Math.cos(dRadians) + theShip.getDirectionX());
+//     setDirectionY(5*Math.sin(dRadians) + theShip.getDirectionY());
+//   }
+
+//   public void show()
+//   {
+//     noStroke();
+//     color(255);
+//     ellipse((float)(getX()), (float)(getY()), 8, 8);
+//   }
+// }
 
 
 
