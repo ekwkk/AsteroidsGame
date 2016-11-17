@@ -1,7 +1,7 @@
 SpaceShip astroBoy = new SpaceShip();
 ArrayList <Asteroid> aster = new ArrayList <Asteroid>();
 Star[] twinkle = new Star[200];
-// Bullets dot = new Bullets(astroBoy);
+// Bullets bulls = new Bullets(astroBoy);
 
 public void setup() 
 {
@@ -39,9 +39,19 @@ public void draw()
       aster.remove(i);
   }
   
-
-
-   // dot.show();
+  // for (int i = 0; i < aster.size(); i++)
+  // {
+  //   for (int j = 0; j < bulls.size(); j++)
+  //   {
+  //     if (dist(???) < 20)
+  //     {
+  //       aster.remove(i);
+  //       bulls.remove(j);
+  //       break;
+  //     }
+  //   }
+  // }
+   // bulls.show();
     astroBoy.show();
     astroBoy.move();
 }
