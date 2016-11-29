@@ -1,7 +1,7 @@
 SpaceShip astroBoy = new SpaceShip();
 ArrayList <Asteroid> aster = new ArrayList <Asteroid>();
 Star[] twinkle = new Star[200];
-// Bullets bulls = new Bullets(astroBoy);
+ArrayList <Bullet> bullets = new ArrayList <Bullet>();
 
 public void setup() 
 {
@@ -37,21 +37,28 @@ public void draw()
 
     if (dist(astroBoy.getX(),astroBoy.getY(),aster.get(i).getX(),aster.get(i).getY()) < 20)
       aster.remove(i);
-  }
+    }
   
-  // for (int i = 0; i < aster.size(); i++)
-  // {
-  //   for (int j = 0; j < bulls.size(); j++)
-  //   {
-  //     if (dist(???) < 20)
-  //     {
-  //       aster.remove(i);
-  //       bulls.remove(j);
-  //       break;
-  //     }
-  //   }
-  // }
-   // bulls.show();
+
+    for (int i = 0; i < bullets.size(); i++)
+    {
+      bullets.get(i).show();
+      bullets.get(i).move();
+    }
+
+    for (int i = 0; i < aster.size(); i++)
+    {
+      for (int j = 0; j < bullets.size(); j++)
+      {
+        if (dist(aster.get(i).getX(), aster.get(i).getY(), bullets.get(j).getX(), bullets.get(j).getY()) < 20)
+        {
+          aster.remove(i);
+          bullets.remove(j);
+          break;
+        }
+      }
+    }
+
     astroBoy.show();
     astroBoy.move();
 }
@@ -62,9 +69,9 @@ public void keyPressed()
     if (key == CODED) 
     {
         if (keyCode == LEFT)
-          astroBoy.rotate(-20);
+          astroBoy.rotate(-30);
         if (keyCode == RIGHT)
-          astroBoy.rotate(20);
+          astroBoy.rotate(30);
         if (keyCode == UP)
         {
           astroBoy.accelerate(0.2);
@@ -79,51 +86,14 @@ public void keyPressed()
         }
     }
 
-    // if (key == ' ')
-    // {
-    //   dot.move();
-    // }
-
+    if (key == ' ')
+    {
+      bullets.add(new Bullet(astroBoy));
+    }
 }
 
 
 
-
-
-
-// class Bullets extends Floater
-// {
-//   public void setX(int x) {myCenterX = x;}
-//   public int getX() {return (int)myCenterX;}
-//   public void setY(int y) {myCenterY = y;}
-//   public int getY() { return (int)myCenterY;}
-//   public void setDirectionX(double x) {myDirectionX = x;}
-//   public double getDirectionX() {return myDirectionX;}
-//   public void setDirectionY(double y) {myDirectionY = y;}
-//   public double getDirectionY() {return myDirectionY;}
-//   public void setPointDirection(int degrees) {myPointDirection = degrees;}
-//   public double getPointDirection() { return myPointDirection;}
-
-
-
-
-//   public Bullets(SpaceShip theShip)
-//   {
-//     setX(theShip.getX());
-//     setY(theShip.getY());
-//     setPointDirection((int)(theShip.getPointDirection()));
-//     double dRadians = getPointDirection()*(Math.PI/180);
-//     setDirectionX(5*Math.cos(dRadians) + theShip.getDirectionX());
-//     setDirectionY(5*Math.sin(dRadians) + theShip.getDirectionY());
-//   }
-
-//   public void show()
-//   {
-//     noStroke();
-//     color(255);
-//     ellipse((float)(getX()), (float)(getY()), 8, 8);
-//   }
-// }
 
 
 
