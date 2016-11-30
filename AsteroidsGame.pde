@@ -52,6 +52,8 @@ public void draw()
       {
         if (dist(aster.get(i).getX(), aster.get(i).getY(), bullets.get(j).getX(), bullets.get(j).getY()) < 20)
         {
+          aster.add(new SmallAsteroid(aster.get(i)));
+          aster.add(new SmallAsteroid(aster.get(i)));
           aster.remove(i);
           bullets.remove(j);
           break;
@@ -102,7 +104,9 @@ public void keyPressed()
 
 class Asteroid extends Floater
 {
-  private int rotSpeed;
+  protected int rotSpeed;
+  public void setrotSpeed(int x) {rotSpeed = x;}
+  public int getrotSpeed() {return rotSpeed;}
 
   public void setX(int x) {myCenterX = x;}
   public int getX() {return (int)myCenterX;}
@@ -232,7 +236,42 @@ class Star
 
 
 
+// Testing mode (TM)
+class SmallAsteroid extends Asteroid
+{
+  
 
+  public SmallAsteroid(Asteroid rock)
+  {
+    setrotSpeed((int)(Math.random()*8-4));
+
+    corners = 6;
+    xCorners = new int[corners];
+    yCorners = new int[corners];
+    xCorners[0] = -15;
+    yCorners[0] = -10;
+    xCorners[1] = 2;
+    yCorners[1] = -10;
+    xCorners[2] = 8;
+    yCorners[2] = 0;
+    xCorners[3] = 1;
+    yCorners[3] = 5;
+    xCorners[4] = -10;
+    yCorners[4] = 10;
+    xCorners[5] = -5;
+    yCorners[5] = 0;
+
+
+
+      myColor = color(128,128,128);
+      setX((int)(rock.getX()));
+      setY((int)(rock.getY()));
+      setDirectionX((int)(Math.random()*8-4));
+      setDirectionY((int)(Math.random()*8-4));
+      setPointDirection((int)(Math.random()*360));
+  }
+
+}
 
 
 

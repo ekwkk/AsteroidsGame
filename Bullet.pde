@@ -35,4 +35,3 @@ class Bullet extends Floater
 	}
 }
 
-
