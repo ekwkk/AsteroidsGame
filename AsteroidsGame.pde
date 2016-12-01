@@ -3,6 +3,7 @@ ArrayList <Asteroid> aster = new ArrayList <Asteroid>();
 Star[] twinkle = new Star[200];
 ArrayList <Bullet> bullets = new ArrayList <Bullet>();
 
+
 public void setup() 
 {
   size(600,600);
@@ -52,11 +53,20 @@ public void draw()
       {
         if (dist(aster.get(i).getX(), aster.get(i).getY(), bullets.get(j).getX(), bullets.get(j).getY()) < 20)
         {
-          aster.add(new SmallAsteroid(aster.get(i)));
-          aster.add(new SmallAsteroid(aster.get(i)));
-          aster.remove(i);
-          bullets.remove(j);
-          break;
+          if (aster.get(i).confirmation() == "Asteroid")
+          {
+            aster.add(new SmallAsteroid(aster.get(i)));
+            aster.add(new SmallAsteroid(aster.get(i)));
+            aster.remove(i);
+            bullets.remove(j);
+            break;
+          }
+          else
+          {
+            aster.remove(i);
+            bullets.remove(j);
+            break;
+          }
         }
       }
     }
@@ -92,6 +102,7 @@ public void keyPressed()
     {
       bullets.add(new Bullet(astroBoy));
     }
+  
 }
 
 
@@ -104,6 +115,8 @@ public void keyPressed()
 
 class Asteroid extends Floater
 {
+  public String confirmation() {return "Asteroid";}
+
   protected int rotSpeed;
   public void setrotSpeed(int x) {rotSpeed = x;}
   public int getrotSpeed() {return rotSpeed;}
@@ -161,6 +174,9 @@ class Asteroid extends Floater
     rotate(rotSpeed);       
     super.move();
   }
+
+
+  
 
 }
 
@@ -239,7 +255,7 @@ class Star
 // Testing mode (TM)
 class SmallAsteroid extends Asteroid
 {
-  
+  public String confirmation() {return "SmallAsteroid";}
 
   public SmallAsteroid(Asteroid rock)
   {
