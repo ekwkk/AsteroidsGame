@@ -33,5 +33,6 @@ class Bullet extends Floater
 		myCenterX += myDirectionX;    
     	myCenterY += myDirectionY;     
 	}
+
 }
 
